@@ -21,8 +21,10 @@ public class Percolation {
         // connecting top sites to source and bottom sites to dest
         for (int i = 0; i < n; i++) {
             connectedSitesUF.union(sourceSite, i);
-            filledSitesUF.union(sourceSite, i);
             connectedSitesUF.union(destSite, (n - 1) * n + i);
+
+            // connecting filled sites to source, but not to dest to solve "backwash" problem
+            filledSitesUF.union(sourceSite, i);
         }
     }
 
